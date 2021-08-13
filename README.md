@@ -31,7 +31,7 @@
 
 ## About
 
-[![Product Name Screen Shot][product-screenshot]](https://packagesforgmail.com/)
+[![Screen Shot][product-screenshot]](https://packagesforgmail.com/)
 
 Work in progress. Tracking your online orders shouldn't be difficult. That's where Packages for Gmail comes in. It beautifully displays all of your incoming packages right inside your Gmail inbox. Connects with [Packages for Gmail Backend](https://github.com/anatelli10/packages-for-gmail-backend) for authentication and package tracking number detection.
 
@@ -68,15 +68,15 @@ Features:
 -   [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
 
 ## Gallery
-[![Product Name Screen Shot][product-screenshot-1]]
-[![Product Name Screen Shot][product-screenshot-2]]
-[![Product Name Screen Shot][product-screenshot-3]]
-[![Product Name Screen Shot][product-screenshot-4]]
-[![Product Name Screen Shot][product-screenshot-5]]
-[![Product Name Screen Shot][product-screenshot-6]]
-[![Product Name Screen Shot][product-screenshot-7]]
-[![Product Name Screen Shot][product-screenshot-8]]
-[![Product Name Screen Shot][product-screenshot-9]]
+![Screen Shot][product-screenshot-1]
+![Screen Shot][product-screenshot-2]
+![Screen Shot][product-screenshot-3]
+![Screen Shot][product-screenshot-4]
+![Screen Shot][product-screenshot-5]
+![Screen Shot][product-screenshot-6]
+![Screen Shot][product-screenshot-7]
+![Screen Shot][product-screenshot-8]
+![Screen Shot][product-screenshot-9]
 
 [product-screenshot]: https://i.imgur.com/HJT4f7L.png
 [product-screenshot-1]: https://i.imgur.com/G45U1ah.png
