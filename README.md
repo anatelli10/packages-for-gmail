@@ -66,4 +66,4 @@ Features:
 -   [React Image](https://github.com/mbrevda/react-image)
 -   [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
 
-[product-screenshot]: https://imgur.com/HJT4f7L
+[product-screenshot]: https://i.imgur.com/HJT4f7L.png
