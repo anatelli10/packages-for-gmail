@@ -3,7 +3,7 @@ import { API_URL } from '..';
 const authorizedFetch = async (user, path, options, callback) => {
     chrome.storage.local.get(`${user}_tokens`, async result => {
         const tokens = result[`${user}_tokens`];
-        if (!tokens) throw 'Missing tokens';
+        if (!tokens) callback();
         const { token, refreshToken } = tokens;
 
         const res = await fetch(API_URL + path, {
