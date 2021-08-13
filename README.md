@@ -32,7 +32,7 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://packagesforgmail.com/)
 
-Work in progress. Tracking your online orders shouldn't be difficult. That's where Packages for Gmail comes in. It beautifully displays all of your incoming packages right inside your Gmail inbox. Connects with [Packages for Gmail Backend](https://github.com/anatelli10/packages-for-gmail-backend) for authentication and Gmail API.
+Work in progress. Tracking your online orders shouldn't be difficult. That's where Packages for Gmail comes in. It beautifully displays all of your incoming packages right inside your Gmail inbox. Connects with [Packages for Gmail Backend](https://github.com/anatelli10/packages-for-gmail-backend) for authentication and package tracking number detection.
 
 Features:
 
