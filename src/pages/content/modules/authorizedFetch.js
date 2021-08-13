@@ -3,7 +3,7 @@ import { API_URL } from '..';
 const authorizedFetch = async (user, path, options, callback) => {
     chrome.storage.local.get(`${user}_tokens`, async result => {
         const tokens = result[`${user}_tokens`];
-        if (!tokens) callback();
+        if (!tokens) return callback();
         const { token, refreshToken } = tokens;
 
         const res = await fetch(API_URL + path, {
@@ -15,7 +15,9 @@ const authorizedFetch = async (user, path, options, callback) => {
             ...options
         });
         const json = await res.json();
+
         if (res.ok || json.message !== 'Unauthorized') return callback(json);
+
         // Unauthorized, attempt to refresh the tokens
         const tokenRes = await fetch(API_URL + '/accounts/refresh-token', {
             method: 'post',
@@ -26,7 +28,9 @@ const authorizedFetch = async (user, path, options, callback) => {
                 refreshToken
             })
         });
-        if (!tokenRes.ok) throw tokenRes;
+
+        if (!tokenRes.ok) return callback();
+
         const tokenJson = await tokenRes.json();
         chrome.storage.local.set(
             {
