@@ -1,4 +1,3 @@
-import { useChromeStorageLocal as useChromeState } from 'use-chrome-storage';
 import React, { useState } from 'react';
 import { SnackbarProvider } from 'notistack';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
@@ -125,14 +124,7 @@ const App = props => {
         >
             <ThemeProvider theme={theme}>
                 {isSignedIn ? (
-                    <Packages
-                        setSignedIn={setSignedIn}
-                        user={props.user}
-                        tokens={props.tokens}
-                        packages={props.packages}
-                        filters={props.filters}
-                        ordering={props.ordering}
-                    />
+                    <Packages {...props} />
                 ) : (
                     <SignInCard user={props.user} setSignedIn={setSignedIn} />
                 )}

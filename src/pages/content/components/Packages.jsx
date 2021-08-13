@@ -4,39 +4,13 @@ import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Divider from '@material-ui/core/Divider';
-import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
-import PrintIcon from '@material-ui/icons/Print';
-import LocalShippingIcon from '@material-ui/icons/LocalShipping';
-import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
-import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import PackagesTableToolbar from './table/PackagesTableToolbar';
 import PackagesTable from './table/PackagesTable';
-import packagesText from '../modules/packagesText';
 import validCouriers from '../modules/validCouriers';
 import authorizedFetch from '../modules/authorizedFetch';
-import { AMOUNT_OF_DAYS, API_URL } from '..';
-
-const statuses = [
-    ['Unavailable', '#666666', <HelpOutlineIcon fontSize="small" />],
-    ['Label Created', '#008af1', <PrintIcon fontSize="small" />],
-    ['In Transit', '#222222', <LocalShippingIcon fontSize="small" />],
-    ['Out for Delivery', '#222222', <LocalShippingIcon fontSize="small" />],
-    ['Delivery Attempted', '#222222', <LocalShippingIcon fontSize="small" />],
-    ['Returned to Sender', '#e93555', <ErrorOutlineIcon fontSize="small" />],
-    ['Exception', '#e93555', <ErrorOutlineIcon fontSize="small" />],
-    ['Delivered', '#549e4e', <CheckCircleOutlineIcon fontSize="small" />]
-].map(([label, color, icon]) => ({
-    label,
-    color,
-    icon
-}));
-
-const initialFilters = {
-    days: AMOUNT_OF_DAYS,
-    // Don't include S10 in filtering
-    couriers: new Array(validCouriers.length - 1).fill(false),
-    statuses: new Array(statuses.length).fill(false)
-};
+import { AMOUNT_OF_DAYS } from '..';
+import statuses from '../modules/statuses';
+import initialFilters from '../modules/initialFilters';
 
 const initialOrdering = {
     order: 'asc',
@@ -212,7 +186,6 @@ const Packages = props => {
                     packages={packages}
                     setPackages={setPackages}
                     setUpdating={setUpdating}
-                    statuses={statuses}
                     selectAll={handleSelectAllClick}
                     rowCount={packages.array.length}
                     searchRowCount={rows.length}
@@ -239,7 +212,6 @@ const Packages = props => {
                     rowCount={packages.array.length}
                     isFilterActive={isFilterActive}
                     isUpdating={isUpdating}
-                    statuses={statuses}
                     page={page}
                     rowsPerPage={rowsPerPage}
                     rows={rows}

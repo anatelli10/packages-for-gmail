@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import PackagesTableRow from './PackagesTableRow';
 import PackagesTableHead from './PackagesTableHead';
+import initialFilters from '../../modules/initialFilters';
 
 const descendingComparator = (i, j, orderBy) => {
     let a = i[orderBy] ?? -1;
@@ -92,7 +93,6 @@ const PackagesTable = props => {
         rowCount,
         isFilterActive,
         isUpdating,
-        statuses,
         page,
         rowsPerPage,
         rows,
@@ -246,7 +246,6 @@ const PackagesTable = props => {
                             )
                             .map((row, index) => (
                                 <PackagesTableRow
-                                    statuses={statuses}
                                     key={row.trackingNumber}
                                     row={row}
                                     isSelected={isSelected}

@@ -104,7 +104,7 @@ const Icon = props => {
 
 const PackagesTableRow = props => {
     const classes = useStyles();
-    const { statuses, row, index, isSelected, searchText } = props;
+    const { row, index, isSelected, searchText } = props;
     const isItemSelected = isSelected(row.trackingNumber);
     const labelId = `enhanced-table-checkbox-${index}`;
 
@@ -185,7 +185,6 @@ const PackagesTableRow = props => {
             {/* Package Status */}
             <TableCell align="left">
                 <Status
-                    statuses={statuses}
                     index={row.status}
                     label={
                         row.status === PackageStatus.UNAVAILABLE

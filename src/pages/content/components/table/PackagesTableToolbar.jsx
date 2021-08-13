@@ -47,7 +47,6 @@ const PackagesTableToolbar = props => {
         packages,
         setPackages,
         setUpdating,
-        statuses,
         selectAll,
         rowCount,
         searchRowCount,
@@ -105,7 +104,6 @@ const PackagesTableToolbar = props => {
                         setPackages={setPackages}
                     />
                     <FilterButton
-                        statuses={statuses}
                         isFilterActive={isFilterActive}
                         filters={filters}
                         setFilters={setFilters}

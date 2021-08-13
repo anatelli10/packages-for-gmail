@@ -20,6 +20,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Status from '../table/Status';
 import validCouriers from '../../modules/validCouriers';
 import PackageStatus from '../../modules/PackageStatus';
+import statusesAlias from '../../modules/statuses';
+import { AMOUNT_OF_DAYS } from '../..';
 
 const useStyles = makeStyles(theme => ({
     formControl: {
@@ -34,10 +36,12 @@ const useStyles = makeStyles(theme => ({
 const FilterButton = props => {
     const classes = useStyles();
     const isFilterActive = props.isFilterActive;
+
     const [days, setDays] = useState(props.filters.days);
     const [couriers, setCouriers] = useState([...props.filters.couriers]);
     const [statuses, setStatuses] = useState([...props.filters.statuses]);
     const [anchorEl, setAnchorEl] = useState(null);
+
     const popoverOpen = Boolean(anchorEl);
     const popoverId = popoverOpen ? 'simple-popover' : undefined;
 
@@ -54,7 +58,7 @@ const FilterButton = props => {
     };
 
     const handleReset = () => {
-        setDays(90);
+        setDays(AMOUNT_OF_DAYS);
         setCouriers(new Array(couriers.length).fill(false));
         setStatuses(new Array(statuses.length).fill(false));
     };
@@ -136,14 +140,7 @@ const FilterButton = props => {
                                                           name={String(i)}
                                                       />
                                                   }
-                                                  label={
-                                                      <Status
-                                                          statuses={
-                                                              props.statuses
-                                                          }
-                                                          index={i}
-                                                      />
-                                                  }
+                                                  label={<Status index={i} />}
                                               />
                                           ]
                                         : []

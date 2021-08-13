@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -41,7 +41,6 @@ const useStyles = makeStyles(theme => ({
 export default function SignInCard(props) {
     const classes = useStyles();
     const { user, setSignedIn } = props;
-    const [disabled, setDisabled] = useState(false);
 
     const receiveMessage = event => {
         if (event.origin !== API_URL) return;
@@ -113,7 +112,6 @@ export default function SignInCard(props) {
                     )}`;
                     openSignInWindow(url, 'auth', user);
                 }}
-                disabled={disabled}
             />
         </Paper>
     );
