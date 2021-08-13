@@ -125,25 +125,19 @@ const FilterButton = props => {
                         <div>
                             <FormLabel component="legend">Status</FormLabel>
                             <FormGroup>
-                                {Object.keys(PackageStatus).flatMap((key, i) =>
-                                    !isNaN(key)
-                                        ? [
-                                              <FormControlLabel
-                                                  key={`status${i}`}
-                                                  control={
-                                                      <Checkbox
-                                                          checked={!statuses[i]}
-                                                          onChange={
-                                                              handleStatusesChange
-                                                          }
-                                                          name={String(i)}
-                                                      />
-                                                  }
-                                                  label={<Status index={i} />}
-                                              />
-                                          ]
-                                        : []
-                                )}
+                                {Object.keys(PackageStatus).map((key, i) => [
+                                    <FormControlLabel
+                                        key={`status${i}`}
+                                        control={
+                                            <Checkbox
+                                                checked={!statuses[i]}
+                                                onChange={handleStatusesChange}
+                                                name={String(i)}
+                                            />
+                                        }
+                                        label={<Status index={i} />}
+                                    />
+                                ])}
                             </FormGroup>
                         </div>
                         <div style={{ marginLeft: '20px' }}>
