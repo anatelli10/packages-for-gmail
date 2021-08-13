@@ -124,7 +124,7 @@ const App = props => {
         >
             <ThemeProvider theme={theme}>
                 {isSignedIn ? (
-                    <Packages {...props} />
+                    <Packages {...props} setSignedIn={setSignedIn} />
                 ) : (
                     <SignInCard user={props.user} setSignedIn={setSignedIn} />
                 )}

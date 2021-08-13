@@ -2,8 +2,9 @@ import { API_URL } from '..';
 
 const authorizedFetch = async (user, path, options, callback) => {
     chrome.storage.local.get(`${user}_tokens`, async result => {
-        const { token, refreshToken } = result[`${user}_tokens`];
-        if (!token || !refreshToken) throw 'Missing tokens';
+        const tokens = result[`${user}_tokens`];
+        if (!tokens) throw 'Missing tokens';
+        const { token, refreshToken } = tokens;
 
         const res = await fetch(API_URL + path, {
             headers: {
@@ -16,7 +17,7 @@ const authorizedFetch = async (user, path, options, callback) => {
         const json = await res.json();
         if (res.ok) return callback(json);
 
-        if (json.message !== 'Unauthorized') throw json.message;
+        if (json.message !== 'Unauthorized') callback(json);
 
         // Unauthorized, attempt to refresh the tokens
         const tokenRes = await fetch(API_URL + '/accounts/refresh-token', {
