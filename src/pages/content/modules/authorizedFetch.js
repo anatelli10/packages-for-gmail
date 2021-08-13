@@ -3,7 +3,7 @@ import { API_URL } from '..';
 const authorizedFetch = async (user, path, options, callback) => {
     chrome.storage.local.get(`${user}_tokens`, async result => {
         const tokens = result[`${user}_tokens`];
-        if (!tokens) return callback();
+        if (!tokens) return callback({ error: 'Tokens not found' });
         const { token, refreshToken } = tokens;
 
         const res = await fetch(API_URL + path, {
@@ -29,7 +29,7 @@ const authorizedFetch = async (user, path, options, callback) => {
             })
         });
 
-        if (!tokenRes.ok) return callback();
+        if (!tokenRes.ok) return callback({ error: 'Failed token refresh' });
 
         const tokenJson = await tokenRes.json();
         chrome.storage.local.set(
