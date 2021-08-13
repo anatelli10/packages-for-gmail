@@ -12,60 +12,65 @@ import FileCopyIcon from '@material-ui/icons/FileCopy';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
 const useStyles = makeStyles(theme => ({
-  paper: {
-    padding: theme.spacing(1),
-    backgroundColor: '#549e4e',
-    color: '#ffffff'
-  },
-  typography: {
-    marginLeft: theme.spacing(0.5),
-    fontSize: '.875rem'
-  }
+    paper: {
+        padding: theme.spacing(1),
+        backgroundColor: '#549e4e',
+        color: '#ffffff'
+    },
+    typography: {
+        marginLeft: theme.spacing(0.5),
+        fontSize: '.875rem'
+    }
 }));
 
 const CopyButton = props => {
-  const classes = useStyles();
-  const { trackingNumber } = props;
-  const [anchorEl, setAnchorEl] = useState(null);
+    const classes = useStyles();
+    const { trackingNumber } = props;
+    const [anchorEl, setAnchorEl] = useState(null);
 
-  const handleClick = event => {
-    navigator.clipboard.writeText(trackingNumber);
-    setAnchorEl(anchorEl ? null : event.currentTarget);
-    setTimeout(() => {
-      setAnchorEl(null);
-    }, 1000);
-  };
+    const handleClick = event => {
+        navigator.clipboard.writeText(trackingNumber);
+        setAnchorEl(anchorEl ? null : event.currentTarget);
+        setTimeout(() => {
+            setAnchorEl(null);
+        }, 1000);
+    };
 
-  const open = Boolean(anchorEl);
-  const id = open ? 'transitions-popper' : undefined;
+    const open = Boolean(anchorEl);
+    const id = open ? 'transitions-popper' : undefined;
 
-  return (
-    <React.Fragment>
-      <Tooltip title="Copy">
-        <IconButton aria-label="copy tracking number" onClick={handleClick}>
-          <FileCopyIcon fontSize="small" />
-        </IconButton>
-      </Tooltip>
-      <Popper
-        id={id}
-        open={open}
-        anchorEl={anchorEl}
-        placement="left"
-        transition
-      >
-        {({ TransitionProps }) => (
-          <Zoom {...TransitionProps} timeout={150}>
-            <Paper className={classes.paper}>
-              <Box display="flex" alignItems="center">
-                <CheckCircleIcon fontSize="small" />
-                <Typography className={classes.typography}>Copied</Typography>
-              </Box>
-            </Paper>
-          </Zoom>
-        )}
-      </Popper>
-    </React.Fragment>
-  );
+    return (
+        <React.Fragment>
+            <Tooltip title="Copy">
+                <IconButton
+                    aria-label="copy tracking number"
+                    onClick={handleClick}
+                >
+                    <FileCopyIcon fontSize="small" />
+                </IconButton>
+            </Tooltip>
+            <Popper
+                id={id}
+                open={open}
+                anchorEl={anchorEl}
+                placement="left"
+                transition
+            >
+                {({ TransitionProps }) => (
+                    <Zoom {...TransitionProps} timeout={150}>
+                        <Paper className={classes.paper}>
+                            <Box display="flex" alignItems="center">
+                                <CheckCircleIcon fontSize="small" />
+                                <Typography className={classes.typography}>
+                                    Copied
+                                </Typography>
+                            </Box>
+                        </Paper>
+                    </Zoom>
+                )}
+            </Popper>
+        </React.Fragment>
+    );
 };
 
 export default CopyButton;

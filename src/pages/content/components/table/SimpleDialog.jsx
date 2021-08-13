@@ -7,51 +7,51 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 const SimpleDialog = props => {
-  const {
-    open,
-    handleClose,
-    title,
-    description,
-    content,
-    confirmAction
-  } = props;
+    const {
+        open,
+        handleClose,
+        title,
+        description,
+        content,
+        confirmAction
+    } = props;
 
-  return (
-    <Dialog
-      open={open}
-      onClose={handleClose}
-      aria-labelledby="dialog-title"
-      aria-describedby="dialog-description"
-      maxWidth="xs"
-    >
-      <DialogTitle id="dialog-title">{title}</DialogTitle>
-      <DialogContent>
-        {description && (
-          <DialogContentText id="dialog-description">
-            {description}
-          </DialogContentText>
-        )}
-        {content}
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={handleClose} color="secondary">
-          {confirmAction ? 'Cancel' : 'Close'}
-        </Button>
-        {confirmAction && (
-          <Button
-            onClick={() => {
-              confirmAction();
-              handleClose();
-            }}
-            color="secondary"
-            autoFocus
-          >
-            OK
-          </Button>
-        )}
-      </DialogActions>
-    </Dialog>
-  );
+    return (
+        <Dialog
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="dialog-title"
+            aria-describedby="dialog-description"
+            maxWidth="xs"
+        >
+            <DialogTitle id="dialog-title">{title}</DialogTitle>
+            <DialogContent>
+                {description && (
+                    <DialogContentText id="dialog-description">
+                        {description}
+                    </DialogContentText>
+                )}
+                {content}
+            </DialogContent>
+            <DialogActions>
+                <Button onClick={handleClose} color="secondary">
+                    {confirmAction ? 'Cancel' : 'Close'}
+                </Button>
+                {confirmAction && (
+                    <Button
+                        onClick={() => {
+                            confirmAction();
+                            handleClose();
+                        }}
+                        color="secondary"
+                        autoFocus
+                    >
+                        OK
+                    </Button>
+                )}
+            </DialogActions>
+        </Dialog>
+    );
 };
 
 export default SimpleDialog;

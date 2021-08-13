@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Tooltip from '@material-ui/core/Tooltip';
 import Button from '@material-ui/core/Button';
@@ -20,7 +20,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Status from '../table/Status';
 import validCouriers from '../../modules/validCouriers';
 import PackageStatus from '../../modules/PackageStatus';
-import statusesAlias from '../../modules/statuses';
 import { AMOUNT_OF_DAYS } from '../..';
 
 const useStyles = makeStyles(theme => ({

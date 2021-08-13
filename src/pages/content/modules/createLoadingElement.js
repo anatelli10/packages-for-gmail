@@ -1,7 +1,7 @@
 /**
  * The "Loading..." overlay element, copycat of element in Gmail
  */
-const createLoadingElement = (id: string): HTMLDivElement => {
+const createLoadingElement = id => {
     const element = document.createElement('div');
     element.id = 'packages-loading';
     element.style.display = 'none';

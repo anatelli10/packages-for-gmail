@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Img } from 'react-image';
 import { fedex, ups, usps } from 'ts-tracking-number';
 import { makeStyles } from '@material-ui/core/styles';
