@@ -12,122 +12,134 @@ import FilterButton from '../buttons/FilterButton';
 import SearchInput from './SearchInput';
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    height: '48px',
-    padding: 0
-  },
-  toolbar: {
-    padding: 0
-  },
-  checkbox: {
-    padding: '0 0 0 4px'
-  },
-  selectedCountText: {
-    whiteSpace: 'nowrap',
-    padding: '0 9px'
-  },
-  pagination: {
-    minWidth: 'fit-content'
-  },
-  caption: {
-    color: '#5f6368',
-    fontSize: '.75rem',
-    letterSpacing: '.3px',
-    textAlign: 'center',
-    width: '80px' // fixed width so searching looks nicer
-  },
-  actions: {
-    marginLeft: 0
-  }
+    root: {
+        height: '48px',
+        padding: 0
+    },
+    toolbar: {
+        padding: 0
+    },
+    checkbox: {
+        padding: '0 0 0 4px'
+    },
+    selectedCountText: {
+        whiteSpace: 'nowrap',
+        padding: '0 9px'
+    },
+    pagination: {
+        minWidth: 'fit-content'
+    },
+    caption: {
+        color: '#5f6368',
+        fontSize: '.75rem',
+        letterSpacing: '.3px',
+        textAlign: 'center',
+        width: '80px' // fixed width so searching looks nicer
+    },
+    actions: {
+        marginLeft: 0
+    }
 }));
 
 const PackagesTableToolbar = props => {
-  const {
-    statuses,
-    selectAll,
-    rowCount,
-    searchRowCount,
-    selectedCount,
-    rowsPerPage,
-    page,
-    handleChangePage,
-    handleChangeRowsPerPage,
-    isFilterActive,
-    filters,
-    setFilters,
-    searchText,
-    handleClearSearch,
-    handleSearch,
-    handleDelete,
-    handleSave,
-    handleAddPackage,
-    handleRestorePackages,
-    handleResetPackages,
-    handleSignOut
-  } = props;
-  const classes = useStyles();
-
-  return (
-    <Toolbar className={classes.root} variant="dense">
-      <div className={classes.checkbox}>
-        <Tooltip title="Select">
-          <Checkbox
-            indeterminate={selectedCount > 0 && selectedCount < rowCount}
-            checked={rowCount > 0 && selectedCount === rowCount}
-            onChange={selectAll}
-            inputProps={{ 'aria-label': 'select all packages' }}
-            color="default"
-          />
-        </Tooltip>
-      </div>
-      {selectedCount > 0 ? (
-        <Toolbar className={classes.toolbar} variant="dense">
-          <DownloadButton
-            selectedCount={selectedCount}
-            handleSave={handleSave}
-          />
-          <DeleteButton
-            selectedCount={selectedCount}
-            handleDelete={handleDelete}
-          />
+    const {
+        user,
+        packages,
+        setPackages,
+        setUpdating,
+        statuses,
+        selectAll,
+        rowCount,
+        searchRowCount,
+        selected,
+        setSelected,
+        rowsPerPage,
+        page,
+        handleChangePage,
+        handleChangeRowsPerPage,
+        isFilterActive,
+        filters,
+        setFilters,
+        searchText,
+        setSearchText,
+        handleClearSearch,
+        handleSignOut
+    } = props;
+    const classes = useStyles();
+    const selectedCount = selected.size;
+    return (
+        <Toolbar className={classes.root} variant="dense">
+            <div className={classes.checkbox}>
+                <Tooltip title="Select">
+                    <Checkbox
+                        indeterminate={
+                            selectedCount > 0 && selectedCount < rowCount
+                        }
+                        checked={rowCount > 0 && selectedCount === rowCount}
+                        onChange={selectAll}
+                        inputProps={{ 'aria-label': 'select all packages' }}
+                        color="default"
+                    />
+                </Tooltip>
+            </div>
+            {selectedCount > 0 ? (
+                <Toolbar className={classes.toolbar} variant="dense">
+                    <DownloadButton
+                        packages={packages}
+                        selected={selected}
+                        setSelected={setSelected}
+                    />
+                    <DeleteButton
+                        user={user}
+                        packages={packages}
+                        setPackages={setPackages}
+                        selected={selected}
+                        setSelected={setSelected}
+                    />
+                </Toolbar>
+            ) : (
+                <Toolbar className={classes.toolbar} variant="dense">
+                    <AddButton
+                        user={user}
+                        packages={packages}
+                        setPackages={setPackages}
+                    />
+                    <FilterButton
+                        statuses={statuses}
+                        isFilterActive={isFilterActive}
+                        filters={filters}
+                        setFilters={setFilters}
+                    />
+                </Toolbar>
+            )}
+            <SearchInput
+                searchText={searchText}
+                setSearchText={setSearchText}
+                handleClearSearch={handleClearSearch}
+            />
+            <TablePagination
+                className={classes.pagination}
+                rowsPerPageOptions={[]}
+                component="div"
+                count={searchRowCount}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                onChangePage={handleChangePage}
+                onChangeRowsPerPage={handleChangeRowsPerPage}
+                classes={{
+                    caption: classes.caption,
+                    actions: classes.actions
+                }}
+            />
+            <UtilitiesButton
+                user={user}
+                setPackages={setPackages}
+                setUpdating={setUpdating}
+                setSelected={setSelected}
+                handleSignOut={handleSignOut}
+            />
         </Toolbar>
-      ) : (
-        <Toolbar className={classes.toolbar} variant="dense">
-          <AddButton handleAddPackage={handleAddPackage} />
-          <FilterButton
-            statuses={statuses}
-            isFilterActive={isFilterActive}
-            filters={filters}
-            setFilters={setFilters}
-          />
-        </Toolbar>
-      )}
-      <SearchInput
-        searchText={searchText}
-        handleClearSearch={handleClearSearch}
-        handleSearch={handleSearch}
-      />
-      <TablePagination
-        className={classes.pagination}
-        rowsPerPageOptions={[]}
-        component="div"
-        count={searchRowCount}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
-        classes={{
-          caption: classes.caption,
-          actions: classes.actions
-        }}
-      />
-      <UtilitiesButton
-        handleRestorePackages={handleRestorePackages}
-        handleResetPackages={handleResetPackages}
-        handleSignOut={handleSignOut}
-      />
-    </Toolbar>
-  );
+    );
 };
 
 export default PackagesTableToolbar;

@@ -47,8 +47,6 @@ InboxSDK.load(2, creds.INBOXSDK_KEY, {
             result => {
                 loadingElement.style.display = 'none';
 
-                console.log('user:', user, result);
-
                 render(
                     <App
                         user={user}

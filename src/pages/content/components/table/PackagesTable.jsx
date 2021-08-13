@@ -101,9 +101,16 @@ const PackagesTable = props => {
         ordering,
         setOrdering,
         searchText,
-        handleResetFilters,
+        setSearchText,
+        setFilters,
         handleClearSearch
     } = props;
+
+    const handleResetFilters = () => {
+        setFilters(initialFilters);
+        chrome.storage.local.set({ filters: initialFilters });
+        setSearchText(searchText);
+    };
 
     const handleRequestSort = (event, property) => {
         const direction =

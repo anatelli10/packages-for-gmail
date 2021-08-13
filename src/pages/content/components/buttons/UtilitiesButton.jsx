@@ -11,6 +11,8 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import LanguageIcon from '@material-ui/icons/Language';
 import SimpleDialog from '../table/SimpleDialog';
 import { AMOUNT_OF_DAYS } from '../..';
+import authorizedFetch from '../../modules/authorizedFetch';
+import { useSnackbar } from 'notistack';
 
 const useStyles = makeStyles(theme => ({
     button: {
@@ -20,11 +22,76 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const UtilitiesButton = props => {
+    const { enqueueSnackbar } = useSnackbar();
     const classes = useStyles();
-    const { handleRestorePackages, handleResetPackages, handleSignOut } = props;
+    const {
+        user,
+        setPackages,
+        setUpdating,
+        setSelected,
+        handleSignOut
+    } = props;
     const [mainOpen, setMainOpen] = useState(false);
     const [signOutOpen, setSignOutOpen] = useState(false);
     const [resetOpen, setResetOpen] = useState(false);
+
+    const handleResetPackages = () => {
+        enqueueSnackbar('Resetting packages, please wait...', {
+            variant: 'info',
+            autoHideDuration: 3000
+        });
+        setUpdating(true);
+        setPackages({ array: [] });
+        authorizedFetch(
+            user,
+            `/accounts/reset-packages?email=${user}`,
+            {},
+            response => {
+                setSelected(new Set());
+                setPackages({
+                    array: response.packages,
+                    updated: Date.now()
+                });
+                enqueueSnackbar(`Successfully reset packages`, {
+                    variant: 'success'
+                });
+                setUpdating(false);
+            }
+        ).catch(err => {
+            enqueueSnackbar(`Error resetting package(s): ${err.message}`, {
+                variant: 'error',
+                autoHideDuration: 5000
+            });
+            setUpdating(false);
+        });
+    };
+
+    const handleRestorePackages = () => {
+        enqueueSnackbar('Restoring deleted packages, please wait...', {
+            variant: 'info',
+            autoHideDuration: 3000
+        });
+        setUpdating(true);
+        authorizedFetch(
+            user,
+            `/accounts/restore-packages?email=${user}`,
+            {},
+            response => {
+                setSelected(new Set());
+                setPackages({ array: response.packages, updated: Date.now() });
+                enqueueSnackbar(`Successfully restored deleted packages`, {
+                    variant: 'success'
+                });
+                setUpdating(false);
+            }
+        ).catch(err => {
+            enqueueSnackbar(`Error restoring package(s): ${err.message}`, {
+                variant: 'error',
+                autoHideDuration: 5000
+            });
+            setUpdating(false);
+        });
+    };
 
     return (
         <React.Fragment>
