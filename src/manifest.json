@@ -28,7 +28,6 @@
     "permissions": [
         "https://mail.google.com/",
         "https://inbox.google.com/",
-        "identity",
         "storage",
         "unlimitedStorage"
     ],
