@@ -206,11 +206,11 @@ const Packages = props => {
             {/* Scrolling table */}
             <Box className={classes.scroll} flex="1 1 auto" overflow="auto">
                 <PackagesTable
-                    page={page}
                     isFilterActive={isFilterActive}
                     isUpdating={isUpdating}
                     ordering={ordering}
                     packagesCount={packages.array.length}
+                    page={page}
                     rows={rows}
                     rowsPerPage={rowsPerPage}
                     searchText={searchText}
