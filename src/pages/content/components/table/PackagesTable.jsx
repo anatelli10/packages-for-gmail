@@ -90,20 +90,20 @@ const useStyles = makeStyles(theme => ({
 const PackagesTable = props => {
     const classes = useStyles();
     const {
-        rowCount,
+        page,
         isFilterActive,
         isUpdating,
-        page,
-        rowsPerPage,
-        rows,
-        selected,
-        setSelected,
         ordering,
-        setOrdering,
+        packagesCount,
+        rows,
+        rowsPerPage,
         searchText,
-        setSearchText,
+        selected,
+        handleClearSearch,
         setFilters,
-        handleClearSearch
+        setOrdering,
+        setSearchText,
+        setSelected
     } = props;
 
     const handleResetFilters = () => {
@@ -180,7 +180,7 @@ const PackagesTable = props => {
                                         >
                                             {/* I got bored, sorry future readers */}
                                             {`No results ${
-                                                rowCount > 0
+                                                packagesCount > 0
                                                     ? `matching ${
                                                           searchText
                                                               ? `"${searchText}"${
@@ -197,7 +197,7 @@ const PackagesTable = props => {
                                                     : `:(`
                                             }`}
                                         </Typography>
-                                        {rowCount > 0 && (
+                                        {packagesCount > 0 && (
                                             <Box
                                                 display="flex"
                                                 justifyContent="center"

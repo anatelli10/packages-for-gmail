@@ -70,20 +70,23 @@ const Packages = props => {
     const [searchText, setSearchText] = useState('');
     const [selected, setSelected] = useState(new Set());
     const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(50);
 
-    let rows = packages.array;
+    const rowsPerPage = 50;
+
     const isFilterActive =
         filters.days < AMOUNT_OF_DAYS ||
         filters.couriers.find(Boolean) ||
         filters.statuses.find(Boolean);
+
+    let rows = packages.array;
 
     if (isFilterActive) {
         rows = rows.filter(
             row =>
                 !filters.couriers[courierIndices.get(row.courierCode)] &&
                 !filters.statuses[row.status] &&
-                (Date.now() - row.messageDate) / 86400000 <= filters.days
+                (Date.now() - row.messageDate) / (24 * 60 * 60 * 1000) <=
+                    filters.days
         );
     }
 
@@ -144,11 +147,6 @@ const Packages = props => {
 
     const handleChangePage = (event, newPage) => setPage(newPage);
 
-    const handleChangeRowsPerPage = event => {
-        setRowsPerPage(parseInt(event.target.value, 10));
-        setPage(0);
-    };
-
     useEffect(() => {
         // Only update once an hour
         if (Date.now() - packages.updated < 60 * 60 * 1000)
@@ -182,26 +180,25 @@ const Packages = props => {
             {/* Toolbar */}
             <Box flex="0 1 auto" className={classes.toolbarContainer}>
                 <PackagesTableToolbar
-                    user={user}
-                    packages={packages}
-                    setPackages={setPackages}
-                    setUpdating={setUpdating}
-                    selectAll={handleSelectAllClick}
-                    rowCount={packages.array.length}
-                    searchRowCount={rows.length}
-                    selected={selected}
-                    setSelected={setSelected}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    handleChangePage={handleChangePage}
-                    handleChangeRowsPerPage={handleChangeRowsPerPage}
-                    isFilterActive={isFilterActive}
                     filters={filters}
-                    setFilters={setFilters}
+                    isFilterActive={isFilterActive}
+                    page={page}
+                    packages={packages}
+                    packagesCount={packages.array.length}
+                    rowsPerPage={rowsPerPage}
+                    searchRowCount={rows.length}
                     searchText={searchText}
-                    setSearchText={setSearchText}
+                    selected={selected}
+                    user={user}
+                    handleChangePage={handleChangePage}
                     handleClearSearch={handleClearSearch}
                     handleSignOut={handleSignOut}
+                    selectAll={handleSelectAllClick}
+                    setFilters={setFilters}
+                    setPackages={setPackages}
+                    setSelected={setSelected}
+                    setUpdating={setUpdating}
+                    setSearchText={setSearchText}
                 />
                 <Divider />
             </Box>
@@ -209,20 +206,20 @@ const Packages = props => {
             {/* Scrolling table */}
             <Box className={classes.scroll} flex="1 1 auto" overflow="auto">
                 <PackagesTable
-                    rowCount={packages.array.length}
+                    page={page}
                     isFilterActive={isFilterActive}
                     isUpdating={isUpdating}
-                    page={page}
-                    rowsPerPage={rowsPerPage}
-                    rows={rows}
-                    selected={selected}
-                    setSelected={setSelected}
                     ordering={ordering}
-                    setOrdering={setOrdering}
+                    packagesCount={packages.array.length}
+                    rows={rows}
+                    rowsPerPage={rowsPerPage}
                     searchText={searchText}
-                    setSearchText={setSearchText}
-                    setFilters={setFilters}
+                    selected={selected}
                     handleClearSearch={handleClearSearch}
+                    setFilters={setFilters}
+                    setOrdering={setOrdering}
+                    setSearchText={setSearchText}
+                    setSelected={setSelected}
                 />
             </Box>
         </Box>

@@ -43,26 +43,25 @@ const useStyles = makeStyles(theme => ({
 
 const PackagesTableToolbar = props => {
     const {
-        user,
-        packages,
-        setPackages,
-        setUpdating,
-        selectAll,
-        rowCount,
-        searchRowCount,
-        selected,
-        setSelected,
-        rowsPerPage,
-        page,
-        handleChangePage,
-        handleChangeRowsPerPage,
-        isFilterActive,
         filters,
-        setFilters,
+        isFilterActive,
+        page,
+        packages,
+        packagesCount,
+        rowsPerPage,
+        searchRowCount,
         searchText,
-        setSearchText,
+        selected,
+        user,
+        handleChangePage,
         handleClearSearch,
-        handleSignOut
+        handleSignOut,
+        selectAll,
+        setFilters,
+        setPackages,
+        setSelected,
+        setUpdating,
+        setSearchText
     } = props;
     const classes = useStyles();
     const selectedCount = selected.size;
@@ -72,9 +71,11 @@ const PackagesTableToolbar = props => {
                 <Tooltip title="Select">
                     <Checkbox
                         indeterminate={
-                            selectedCount > 0 && selectedCount < rowCount
+                            selectedCount > 0 && selectedCount < packagesCount
                         }
-                        checked={rowCount > 0 && selectedCount === rowCount}
+                        checked={
+                            packagesCount > 0 && selectedCount === packagesCount
+                        }
                         onChange={selectAll}
                         inputProps={{ 'aria-label': 'select all packages' }}
                         color="default"
@@ -123,7 +124,6 @@ const PackagesTableToolbar = props => {
                 rowsPerPage={rowsPerPage}
                 page={page}
                 onChangePage={handleChangePage}
-                onChangeRowsPerPage={handleChangeRowsPerPage}
                 classes={{
                     caption: classes.caption,
                     actions: classes.actions
