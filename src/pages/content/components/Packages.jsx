@@ -196,9 +196,9 @@ const Packages = props => {
                     selectAll={handleSelectAllClick}
                     setFilters={setFilters}
                     setPackages={setPackages}
+                    setSearchText={setSearchText}
                     setSelected={setSelected}
                     setUpdating={setUpdating}
-                    setSearchText={setSearchText}
                 />
                 <Divider />
             </Box>

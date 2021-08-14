@@ -90,11 +90,11 @@ const useStyles = makeStyles(theme => ({
 const PackagesTable = props => {
     const classes = useStyles();
     const {
-        page,
         isFilterActive,
         isUpdating,
         ordering,
         packagesCount,
+        page,
         rows,
         rowsPerPage,
         searchText,

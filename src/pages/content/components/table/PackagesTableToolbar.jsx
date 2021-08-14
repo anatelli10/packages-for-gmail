@@ -59,9 +59,9 @@ const PackagesTableToolbar = props => {
         selectAll,
         setFilters,
         setPackages,
+        setSearchText,
         setSelected,
-        setUpdating,
-        setSearchText
+        setUpdating
     } = props;
     const classes = useStyles();
     const selectedCount = selected.size;
