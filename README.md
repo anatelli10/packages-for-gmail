@@ -52,6 +52,7 @@ Features:
 
 -   [React](https://reactjs.org/)
 -   [Material-UI](https://material-ui.com/)
+-   [Chrome API](https://developer.chrome.com/docs/extensions/reference/)
 -   [InboxSDK](https://www.inboxsdk.com/)
 
 <!-- ACKNOWLEDGEMENTS -->
