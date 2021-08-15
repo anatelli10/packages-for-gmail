@@ -84,7 +84,7 @@ Features:
 [product-screenshot-2]: https://i.imgur.com/9ep3Rgc.png
 [product-screenshot-3]: https://i.imgur.com/S0E9B4M.png
 [product-screenshot-4]: https://i.imgur.com/DotgCDd.png
-[product-screenshot-5]: https://i.imgur.com/mhNR0CA.png
+[product-screenshot-5]: https://i.imgur.com/ibXVQCT.png
 [product-screenshot-6]: https://i.imgur.com/JN1vJrK.png
 [product-screenshot-7]: https://i.imgur.com/5wc2oMM.png
 [product-screenshot-8]: https://i.imgur.com/eSgQoZj.png
