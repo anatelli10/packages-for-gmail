@@ -33,7 +33,7 @@
 
 [![Screen Shot][product-screenshot]](https://packagesforgmail.com/)
 
-Work in progress. Tracking your online orders shouldn't be difficult. That's where the Packages for Gmail Chrome Extension comes in. It beautifully displays all of your incoming packages right inside your Gmail inbox. Connects with [Packages for Gmail Backend](https://github.com/anatelli10/packages-for-gmail-backend) for authentication and package tracking number detection.
+Work in progress. Tracking your online orders shouldn't be difficult. That's where the Packages for Gmail Chrome Extension comes in. It beautifully displays all of your incoming packages right inside your Gmail inbox. Connects with [Packages for Gmail Back-End](https://github.com/anatelli10/packages-for-gmail-back-end) for authentication and package tracking number detection.
 
 Features:
 
@@ -52,6 +52,7 @@ Features:
 
 -   [React](https://reactjs.org/)
 -   [Material-UI](https://material-ui.com/)
+-   [Chrome API](https://developer.chrome.com/docs/extensions/reference/)
 -   [InboxSDK](https://www.inboxsdk.com/)
 
 <!-- ACKNOWLEDGEMENTS -->
@@ -78,12 +79,12 @@ Features:
 ![Screen Shot][product-screenshot-8]
 ![Screen Shot][product-screenshot-9]
 
-[product-screenshot]: https://i.imgur.com/HJT4f7L.png
+[product-screenshot]: https://i.imgur.com/jskv0vs.png
 [product-screenshot-1]: https://i.imgur.com/G45U1ah.png
 [product-screenshot-2]: https://i.imgur.com/9ep3Rgc.png
 [product-screenshot-3]: https://i.imgur.com/S0E9B4M.png
 [product-screenshot-4]: https://i.imgur.com/DotgCDd.png
-[product-screenshot-5]: https://i.imgur.com/mhNR0CA.png
+[product-screenshot-5]: https://i.imgur.com/ibXVQCT.png
 [product-screenshot-6]: https://i.imgur.com/JN1vJrK.png
 [product-screenshot-7]: https://i.imgur.com/5wc2oMM.png
 [product-screenshot-8]: https://i.imgur.com/eSgQoZj.png
