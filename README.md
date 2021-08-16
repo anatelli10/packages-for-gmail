@@ -79,7 +79,7 @@ Features:
 ![Screen Shot][product-screenshot-8]
 ![Screen Shot][product-screenshot-9]
 
-[product-screenshot]: https://i.imgur.com/HJT4f7L.png
+[product-screenshot]: https://i.imgur.com/jskv0vs.png
 [product-screenshot-1]: https://i.imgur.com/G45U1ah.png
 [product-screenshot-2]: https://i.imgur.com/9ep3Rgc.png
 [product-screenshot-3]: https://i.imgur.com/S0E9B4M.png
