@@ -19,6 +19,8 @@
     <li>
       <a href="#about">About</a>
       <ul>
+        <li><a href="#code-examples">Code Examples</a></li>
+        <li><a href="#features">Features</a></li>
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
@@ -33,9 +35,18 @@
 
 [![Screen Shot][product-screenshot]](https://packagesforgmail.com/)
 
+#### Code Examples:
+-   [pages/content/index.js](https://github.com/anatelli10/packages-for-gmail/tree/main/src/pages/content/index.js)
+-   [pages/content/modules/authorizedFetch.js](https://github.com/anatelli10/packages-for-gmail/blob/main/src/pages/content/modules/authorizedFetch.js)
+-   [pages/content/components/Packages.jsx](https://github.com/anatelli10/packages-for-gmail/blob/main/src/pages/content/components/Packages.jsx)
+-   [pages/content/components/PackagesTable.jsx](https://github.com/anatelli10/packages-for-gmail/blob/main/src/pages/content/components/table/PackagesTable.jsx)
+-   [pages/content/components/PackagesTableRow.jsx](https://github.com/anatelli10/packages-for-gmail/blob/main/src/pages/content/components/table/PackagesTableRow.jsx)
+-   [pages/content/components/Buttons/AddButton.jsx](https://github.com/anatelli10/packages-for-gmail/blob/main/src/pages/content/components/buttons/AddButton.jsx)
+-   [pages/content/components/Buttons/FilterButton.jsx](https://github.com/anatelli10/packages-for-gmail/blob/main/src/pages/content/components/buttons/FilterButton.jsx)
+
 Work in progress. Tracking your online orders shouldn't be difficult. That's where the Packages for Gmail Chrome Extension comes in. It beautifully displays all of your incoming packages right inside your Gmail inbox. Connects with [Packages for Gmail Back-End](https://github.com/anatelli10/packages-for-gmail-back-end) for authentication and package tracking number detection.
 
-Features:
+#### Features:
 
 -   Supports FedEx, UPS, and USPS packages
 -   View the sender, package status, delivery (or estimated delivery) time, message time, and tracking number of each package
@@ -48,7 +59,7 @@ Features:
 -   Manually add or delete packages
 -   Download package(s) data into a .csv file
 
-### Built With
+#### Built With
 
 -   [React](https://reactjs.org/)
 -   [Material-UI](https://material-ui.com/)
