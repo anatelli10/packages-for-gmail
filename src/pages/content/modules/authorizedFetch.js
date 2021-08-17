@@ -16,8 +16,10 @@ const authorizedFetch = async (user, path, options, callback) => {
         });
         const json = await res.json();
 
-        if (res.ok || json.message !== 'Unauthorized') return callback(json);
+        if (res.ok) return callback(json);
 
+        if (json.message !== 'Unauthorized') return callback({error: json.message});
+        
         // Unauthorized, attempt to refresh the tokens
         const tokenRes = await fetch(API_URL + '/accounts/refresh-token', {
             method: 'post',
