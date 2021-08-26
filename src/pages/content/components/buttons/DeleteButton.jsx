@@ -15,14 +15,11 @@ const DeleteButton = props => {
     const text = packagesText(selected.size);
 
     const handleDeletePackages = () => {
-        authorizedFetch(
-            user,
-            `/accounts/delete-packages?email=${user}`,
-            {
-                method: 'post',
-                body: JSON.stringify([...selected])
-            },
-            () => {
+        authorizedFetch(user, `/accounts/delete-packages?email=${user}`, {
+            method: 'post',
+            body: JSON.stringify([...selected])
+        })
+            .then(() => {
                 setSelected(new Set());
                 setPackages({
                     array: packages.array.filter(
@@ -33,13 +30,13 @@ const DeleteButton = props => {
                 enqueueSnackbar(`Deleted ${text}`, {
                     variant: 'success'
                 });
-            }
-        ).catch(err => {
-            enqueueSnackbar(`Error deleting package(s): ${err.message}`, {
-                variant: 'error',
-                autoHideDuration: 5000
+            })
+            .catch(err => {
+                enqueueSnackbar(`Error deleting package(s): ${err.message}`, {
+                    variant: 'error',
+                    autoHideDuration: 5000
+                });
             });
-        });
     };
 
     const handleClickOpen = () => setOpen(true);

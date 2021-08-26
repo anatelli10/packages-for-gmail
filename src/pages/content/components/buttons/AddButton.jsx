@@ -63,19 +63,16 @@ const AddButton = props => {
 
     const handleAddPackage = values => {
         const { courierCode, trackingNumber, sender, senderUrl } = values;
-        authorizedFetch(
-            user,
-            `/accounts/add-package?email=${user}`,
-            {
-                method: 'post',
-                body: JSON.stringify({
-                    courierCode,
-                    trackingNumber,
-                    sender,
-                    senderUrl
-                })
-            },
-            response => {
+        authorizedFetch(user, `/accounts/add-package?email=${user}`, {
+            method: 'post',
+            body: JSON.stringify({
+                courierCode,
+                trackingNumber,
+                sender,
+                senderUrl
+            })
+        })
+            .then(response => {
                 setPackages({
                     array: [...packages.array, response.package],
                     updated: packages.updated
@@ -86,13 +83,13 @@ const AddButton = props => {
                         variant: 'success'
                     }
                 );
-            }
-        ).catch(err => {
-            enqueueSnackbar(`Error adding package: ${err.message}`, {
-                variant: 'error',
-                autoHideDuration: 5000
+            })
+            .catch(err => {
+                enqueueSnackbar(`Error adding package: ${err.message}`, {
+                    variant: 'error',
+                    autoHideDuration: 5000
+                });
             });
-        });
     };
 
     const validateSender = event =>

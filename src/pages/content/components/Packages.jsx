@@ -105,29 +105,18 @@ const Packages = props => {
     }
 
     const handleSignOut = () => {
-        chrome.storage.local.get(`${user}_tokens`, result => {
+        chrome.storage.local.get(`${user}_tokens`, async result => {
             const { refreshToken } = result[`${user}_tokens`];
-            authorizedFetch(
-                user,
-                '/accounts/revoke-token',
-                {
-                    method: 'post',
-                    body: JSON.stringify({ token: refreshToken })
-                },
-                () => {
-                    props.setSignedIn(false);
-                    chrome.storage.local.remove(`${user}_tokens`, () =>
-                        enqueueSnackbar('Signed out of packages', {
-                            variant: 'success'
-                        })
-                    );
-                }
-            ).catch(err => {
-                enqueueSnackbar(`Error signing out: ${err.message}`, {
-                    variant: 'error',
-                    autoHideDuration: 5000
-                });
-            });
+            await authorizedFetch(user, '/accounts/revoke-token', {
+                method: 'post',
+                body: JSON.stringify({ token: refreshToken })
+            }).catch();
+            props.setSignedIn(false);
+            chrome.storage.local.remove(`${user}_tokens`, () =>
+                enqueueSnackbar('Signed out of packages', {
+                    variant: 'success'
+                })
+            );
         });
     };
 
@@ -154,25 +143,22 @@ const Packages = props => {
 
         setUpdating(true);
 
-        authorizedFetch(
-            user,
-            `/accounts/packages?email=${user}`,
-            {},
-            response => {
+        authorizedFetch(user, `/accounts/packages?email=${user}`)
+            .then(response => {
                 setPackages({ array: response.packages, updated: Date.now() });
                 setUpdating(false);
                 enqueueSnackbar('Updated packages', {
                     variant: 'success'
                 });
-            }
-        ).catch(err => {
-            setUpdating(false);
-            enqueueSnackbar(`Error updating packages: ${err.message}`, {
-                variant: 'error',
-                autoHideDuration: 5000
+            })
+            .catch(err => {
+                setUpdating(false);
+                enqueueSnackbar(`Error updating packages: ${err.message}`, {
+                    variant: 'error',
+                    autoHideDuration: 5000
+                });
+                handleSignOut();
             });
-            handleSignOut();
-        });
     }, []);
 
     return (

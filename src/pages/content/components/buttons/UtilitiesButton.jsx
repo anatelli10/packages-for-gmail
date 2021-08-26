@@ -42,11 +42,8 @@ const UtilitiesButton = props => {
         });
         setUpdating(true);
         setPackages({ array: [] });
-        authorizedFetch(
-            user,
-            `/accounts/reset-packages?email=${user}`,
-            {},
-            response => {
+        authorizedFetch(user, `/accounts/reset-packages?email=${user}`)
+            .then(response => {
                 setSelected(new Set());
                 setPackages({
                     array: response.packages,
@@ -56,14 +53,14 @@ const UtilitiesButton = props => {
                     variant: 'success'
                 });
                 setUpdating(false);
-            }
-        ).catch(err => {
-            enqueueSnackbar(`Error resetting package(s): ${err.message}`, {
-                variant: 'error',
-                autoHideDuration: 5000
+            })
+            .catch(err => {
+                enqueueSnackbar(`Error resetting package(s): ${err.message}`, {
+                    variant: 'error',
+                    autoHideDuration: 5000
+                });
+                setUpdating(false);
             });
-            setUpdating(false);
-        });
     };
 
     const handleRestorePackages = () => {
@@ -72,25 +69,22 @@ const UtilitiesButton = props => {
             autoHideDuration: 3000
         });
         setUpdating(true);
-        authorizedFetch(
-            user,
-            `/accounts/restore-packages?email=${user}`,
-            {},
-            response => {
+        authorizedFetch(user, `/accounts/restore-packages?email=${user}`)
+            .then(response => {
                 setSelected(new Set());
                 setPackages({ array: response.packages, updated: Date.now() });
                 enqueueSnackbar(`Successfully restored deleted packages`, {
                     variant: 'success'
                 });
                 setUpdating(false);
-            }
-        ).catch(err => {
-            enqueueSnackbar(`Error restoring package(s): ${err.message}`, {
-                variant: 'error',
-                autoHideDuration: 5000
+            })
+            .catch(err => {
+                enqueueSnackbar(`Error restoring package(s): ${err.message}`, {
+                    variant: 'error',
+                    autoHideDuration: 5000
+                });
+                setUpdating(false);
             });
-            setUpdating(false);
-        });
     };
 
     return (
