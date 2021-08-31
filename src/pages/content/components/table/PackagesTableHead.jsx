@@ -15,11 +15,11 @@ const headCells = [
         orderProperty: 'status'
     },
     {
-        label: 'Delivery Time',
-        orderProperty: 'deliveryTime'
+        label: 'Delivery Date',
+        orderProperty: 'deliveryDate'
     },
     {
-        label: 'Message Time',
+        label: 'Message Date',
         orderProperty: 'messageDate'
     },
     {

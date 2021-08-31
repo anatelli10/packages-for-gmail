@@ -36,8 +36,8 @@ const DownloadButton = props => {
                                 row.courierCode.toUpperCase(),
                                 row.sender,
                                 formattedDate(row.messageDate),
-                                row.deliveryTime
-                                    ? formattedDate(row.deliveryTime)
+                                row.deliveryDate
+                                    ? formattedDate(row.deliveryDate)
                                     : 'Unavailable'
                             ].join(',')
                         )

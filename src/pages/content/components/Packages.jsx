@@ -9,8 +9,8 @@ import PackagesTable from './table/PackagesTable';
 import validCouriers from '../modules/validCouriers';
 import authorizedFetch from '../modules/authorizedFetch';
 import { AMOUNT_OF_DAYS } from '..';
-import statuses from '../modules/statuses';
 import initialFilters from '../modules/initialFilters';
+import packageStatuses from '../modules/packageStatus';
 
 const initialOrdering = {
     order: 'asc',
@@ -84,7 +84,7 @@ const Packages = props => {
         rows = rows.filter(
             row =>
                 !filters.couriers[courierIndices.get(row.courierCode)] &&
-                !filters.statuses[row.status] &&
+                !filters.statuses[packageStatuses.indexOf(row.status)] &&
                 (Date.now() - row.messageDate) / (24 * 60 * 60 * 1000) <=
                     filters.days
         );
@@ -94,7 +94,7 @@ const Packages = props => {
         rows = rows.filter(row =>
             [
                 row.sender,
-                statuses[row.status].label,
+                row.status.replace(/_/g, ' '),
                 row.trackingNumber
             ].find(val =>
                 String(val)
@@ -137,8 +137,8 @@ const Packages = props => {
     const handleChangePage = (event, newPage) => setPage(newPage);
 
     useEffect(() => {
-        // Only update once an hour
-        if (Date.now() - packages.updated < 60 * 60 * 1000)
+        // Only request update every 5 minutes
+        if (Date.now() - packages.updated < 5 * 60 * 1000)
             return setUpdating(false);
 
         setUpdating(true);
@@ -182,6 +182,7 @@ const Packages = props => {
                     selectAll={handleSelectAllClick}
                     setFilters={setFilters}
                     setPackages={setPackages}
+                    setPage={setPage}
                     setSearchText={setSearchText}
                     setSelected={setSelected}
                     setUpdating={setUpdating}

@@ -45,7 +45,13 @@ const useStyles = makeStyles(theme => ({
 
 const SearchInput = props => {
     const classes = useStyles();
-    const { searchText, setSearchText, handleClearSearch } = props;
+    const {
+        searchText,
+        setSearchText,
+        handleClearSearch,
+        page,
+        setPage
+    } = props;
 
     const handleSearch = event => {
         setSearchText(event.target.value);

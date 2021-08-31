@@ -10,7 +10,6 @@ import Checkbox from '@material-ui/core/Checkbox';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Status from './Status';
 import CopyButton from '../buttons/CopyButton';
-import PackageStatus from '../../modules/PackageStatus';
 
 const urls = new Map([
     [fedex.courier_code, fedex.tracking_numbers[0].tracking_url],
@@ -42,7 +41,7 @@ const getRelativeTime = (d1, d2 = new Date()) => {
             const value =
                 elapsed < 0
                     ? Math.round(elapsed / units[u])
-                    : // Always round up future times (used for delivery times)
+                    : // Always round up future times (used for delivery dates)
                       Math.ceil(elapsed / units[u]);
 
             // Yesterday, Today, Tomorrow, Now
@@ -185,9 +184,9 @@ const PackagesTableRow = props => {
             {/* Package Status */}
             <TableCell align="left">
                 <Status
-                    index={row.status}
+                    status={row.status}
                     label={
-                        row.status === PackageStatus.UNAVAILABLE
+                        row.status === 'UNAVAILABLE'
                             ? "This package hasn't been processed by the courier yet or something else went wrong trying to retrieve details for this package. If this package was detected in error then it will be automatically removed after 24 hours. You can expedite this process by manually deleting it."
                             : row.label
                     }
@@ -197,8 +196,8 @@ const PackagesTableRow = props => {
 
             {/* Delivery/Estimated Date */}
             <TableCell align="left">
-                {row.deliveryTime
-                    ? getRelativeTime(row.deliveryTime)
+                {row.deliveryDate
+                    ? getRelativeTime(row.deliveryDate)
                     : 'Unavailable'}
             </TableCell>
 

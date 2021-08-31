@@ -19,7 +19,7 @@ import Typography from '@material-ui/core/Typography';
 import InputLabel from '@material-ui/core/InputLabel';
 import Status from '../table/Status';
 import validCouriers from '../../modules/validCouriers';
-import PackageStatus from '../../modules/PackageStatus';
+import packageStatuses from '../../modules/packageStatus';
 import { AMOUNT_OF_DAYS } from '../..';
 
 const useStyles = makeStyles(theme => ({
@@ -125,7 +125,7 @@ const FilterButton = props => {
                         <div>
                             <FormLabel component="legend">Status</FormLabel>
                             <FormGroup>
-                                {Object.keys(PackageStatus).map((key, i) => [
+                                {packageStatuses.map((val, i) => [
                                     <FormControlLabel
                                         key={`status${i}`}
                                         control={
@@ -135,7 +135,7 @@ const FilterButton = props => {
                                                 name={String(i)}
                                             />
                                         }
-                                        label={<Status index={i} />}
+                                        label={<Status status={val} />}
                                     />
                                 ])}
                             </FormGroup>

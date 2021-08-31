@@ -39,7 +39,7 @@ Work in progress. Tracking your online orders shouldn't be difficult. That's whe
 #### Features
 
 -   Supports FedEx, UPS, and USPS packages
--   View the sender, package status, delivery (or estimated delivery) time, message time, and tracking number of each package
+-   View the sender, package status, delivery (or estimated delivery) date, message date, and tracking number of each package
 -   Sort
 -   Filter
 -   Search
@@ -70,6 +70,7 @@ Work in progress. Tracking your online orders shouldn't be difficult. That's whe
 -   [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
 
 ## Gallery
+
 ![Screen Shot][product-screenshot-1]
 ![Screen Shot][product-screenshot-2]
 ![Screen Shot][product-screenshot-3]

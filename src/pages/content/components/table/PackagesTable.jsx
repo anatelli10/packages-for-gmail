@@ -28,7 +28,7 @@ const descendingComparator = (i, j, orderBy) => {
 const getComparator = (order, orderBy) => {
     let bool = order === 'desc';
     // Sort by relative time ago instead of milliseconds number (so reverse it)
-    if (orderBy === 'deliveryTime' || orderBy === 'messageDate') bool = !bool;
+    if (orderBy === 'deliveryDate' || orderBy === 'messageDate') bool = !bool;
     return bool
         ? (a, b) => descendingComparator(a, b, orderBy)
         : (a, b) => -descendingComparator(a, b, orderBy);

@@ -59,6 +59,7 @@ const PackagesTableToolbar = props => {
         selectAll,
         setFilters,
         setPackages,
+        setPage,
         setSearchText,
         setSelected,
         setUpdating
@@ -115,6 +116,8 @@ const PackagesTableToolbar = props => {
                 searchText={searchText}
                 setSearchText={setSearchText}
                 handleClearSearch={handleClearSearch}
+                page={page}
+                setPage={setPage}
             />
             <TablePagination
                 className={classes.pagination}

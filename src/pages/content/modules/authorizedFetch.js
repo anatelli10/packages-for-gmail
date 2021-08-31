@@ -10,7 +10,7 @@ const setTokens = (user, tokens) =>
         chrome.storage.local.set({ [`${user}_tokens`]: tokens }, resolve);
     });
 
-const authorizedFetch = async (user, path, options) => {
+const authorizedFetch = async (user, path, options = {}) => {
     const tokens = (await getTokens(user))[`${user}_tokens`];
     if (!tokens) throw new Error('Tokens not found');
     const { token, refreshToken } = tokens;
@@ -48,7 +48,7 @@ const authorizedFetch = async (user, path, options) => {
         refreshToken: tokenJson.refreshToken
     });
 
-    return authorizedFetch(path, options);
+    return authorizedFetch(user, path, options);
 };
 
 export default authorizedFetch;
